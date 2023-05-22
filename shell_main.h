@@ -1,0 +1,40 @@
+#ifndef MAIN_H
+#define MAIN_H
+
+#include <stdio.h>
+#include <unistd.h>
+#include <string.h>
+#include <stdlib.h>
+#include <stdarg.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <fcntl.h>
+#include <stdbool.h>
+
+/**
+ * struct formatter - the string format for my printf
+ * @c: the character format
+ * @f: the function to use
+ */
+typedef struct format
+{
+        char *c;
+        int (*f)(va_list *);
+} format_s;
+
+char **tokens(char *commands, ssize_t command_len);
+int execute_command(char **full_command, char **argv, char **envp);
+int _strlen(char *s);
+char *_strcat(char *dest, char *src);
+int _strncmp(char *s1, char *s2, int n);
+int _strcmp(char *s1, char *s2);
+char *_strcpy(char *dest, char *src);
+int printer(const char *format, format_s format_lst[], va_list *args);
+int printstring(va_list *args);
+int _printf(const char *format, ...);
+int _putchar(char c);
+char *locate_path(char *user_cmd, char **envp);
+char *_getEnv(char *path, char **envp);
+int built(char **command, char **envp);
+
+#endif
