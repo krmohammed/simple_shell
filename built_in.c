@@ -10,21 +10,20 @@
 
 int built(char **command, char **envp)
 {
-    int i;
+	int i;
 
-    if (_strcmp(command[0], "exit") == 0)
-    {
-        exit(1);
-    }
-    if (_strcmp(command[0], "env") == 0)
-    {
-        i = 0;
-        while (envp[i])
-        {
-            _printf("%s\n", envp[i++]);
-        }
-        return (1);
-    }
+	if (_strcmp(command[0], "exit") == 0)
+	{
+		exit(1);
+	}
+	if (_strcmp(command[0], "env") == 0)
+	{
+		i = 0;
+		while (envp[i])
+			_printf("%s\n", envp[i++]);
 
-    return (0);
+		return (1);
+	}
+
+	return (0);
 }
