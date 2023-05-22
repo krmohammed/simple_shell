@@ -10,6 +10,8 @@
 #include <sys/wait.h>
 #include <fcntl.h>
 #include <stdbool.h>
+#include <sys/stat.h>
+
 
 /**
  * struct formatter - the string format for my printf
