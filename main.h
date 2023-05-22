@@ -14,14 +14,14 @@
 
 
 /**
- * struct formatter - the string format for my printf
+ * struct format - the string format for my printf
  * @c: the character format
  * @f: the function to use
  */
 typedef struct format
 {
-        char *c;
-        int (*f)(va_list *);
+	char *c;
+	int (*f)(va_list *);
 } format_s;
 
 char **tokens(char *commands, ssize_t command_len);
