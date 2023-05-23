@@ -25,7 +25,7 @@ typedef struct format
 } format_s;
 
 char **tokens(char *commands, ssize_t command_len);
-int execute_command(char **full_command, char **argv, char **envp);
+int execute_command(char **full_command, char **argv, char **envp, size_t line);
 int _strlen(char *s);
 char *_strcat(char *dest, char *src);
 int _strncmp(char *s1, char *s2, int n);
@@ -33,6 +33,7 @@ int _strcmp(char *s1, char *s2);
 char *_strcpy(char *dest, char *src);
 int printer(const char *format, format_s format_lst[], va_list *args);
 int printstring(va_list *args);
+int printnumber(va_list *list);
 int _printf(const char *format, ...);
 int _putchar(char c);
 char *locate_path(char *user_cmd, char **envp);

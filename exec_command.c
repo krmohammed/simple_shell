@@ -5,11 +5,11 @@
  * @full_command: array of pointers to the commands
  * @argv: argument vector
  * @envp: environment variable
- *
+ * @line: line number (nth iteration)
  * Return: 0 (on success)
  */
 
-int execute_command(char **full_command, char **argv, char **envp)
+int execute_command(char **full_command, char **argv, char **envp, size_t line)
 {
 	pid_t child;
 	int status;
@@ -21,7 +21,8 @@ int execute_command(char **full_command, char **argv, char **envp)
 	{
 		if (execve(actual_command, full_command, envp) == -1)
 		{
-			_printf("%s: No such file or directory\n", argv[0]);
+			_printf("%s: %d: %s: not found\n", argv[0], line,
+				full_command[0]);
 			exit(1);
 		}
 	}

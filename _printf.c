@@ -11,6 +11,7 @@ int _printf(const char *format, ...)
 	unsigned int count = 0;
 	format_s format_lst[] = {
 		{"s", printstring},
+		{"d", printnumber},
 		{NULL, NULL}
 	};
 	va_start(args, format);

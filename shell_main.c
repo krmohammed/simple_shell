@@ -13,7 +13,7 @@ int main(int argc, char **argv, char **envp)
 {
 	char *prompt, *user_command = NULL;
 	ssize_t get_command;
-	size_t n = 0;
+	size_t n = 0, line_num = 0;
 	char **full_command;
 	(void)argc;
 
@@ -25,6 +25,7 @@ int main(int argc, char **argv, char **envp)
 			_printf("%s", prompt);
 		/*write(STDOUT_FILENO, prompt, 2);*/
 		get_command = getline(&user_command, &n, stdin);
+		line_num++;
 		if (get_command == -1)
 		{
 			free(user_command);
@@ -37,7 +38,7 @@ int main(int argc, char **argv, char **envp)
 		full_command = tokens(user_command, get_command);
 		if (built(full_command, envp))
 			continue;
-		execute_command(full_command, argv, envp);
+		execute_command(full_command, argv, envp, line_num);
 	}
 	free(user_command);
 	return (0);
