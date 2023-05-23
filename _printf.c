@@ -7,9 +7,9 @@
  */
 int _printf(const char *format, ...)
 {
-        va_list args;
-        unsigned int count = 0;
-        format_s format_lst[] = {
+	va_list args;
+	unsigned int count = 0;
+	format_s format_lst[] = {
                 {"s", printstring},
                 {NULL, NULL}
         };
@@ -20,3 +20,4 @@ int _printf(const char *format, ...)
         va_end(args);
         return (count);
 }
+

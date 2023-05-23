@@ -16,10 +16,10 @@ char *_getEnv(char *path, char **envp)
 		return (NULL);
 	for (i = 0; envp[i] != NULL; i++)
 	{
-	    if (_strncmp(envp[i], path, _strlen(path)) == 0 && envp[i][_strlen(path)])
-	    {
-		    return (envp[i] + _strlen(path) + 1);
-	    }
+		if (_strncmp(envp[i], path, _strlen(path)) == 0 && envp[i][_strlen(path)])
+		{
+			return (envp[i] + _strlen(path) + 1);
+		}
 	}
 	return (NULL);
 }
