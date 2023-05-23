@@ -10,14 +10,12 @@ int _printf(const char *format, ...)
 	va_list args;
 	unsigned int count = 0;
 	format_s format_lst[] = {
-                {"s", printstring},
-                {NULL, NULL}
-        };
-        va_start(args, format);
-
-        count = printer(format, format_lst, &args);
-
-        va_end(args);
-        return (count);
+		{"s", printstring},
+		{NULL, NULL}
+	};
+	va_start(args, format);
+	count = printer(format, format_lst, &args);
+	va_end(args);
+	return (count);
 }
 
