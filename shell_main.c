@@ -13,36 +13,32 @@ int main(int argc, char **argv, char **envp)
 {
 	char *prompt, *user_command = NULL;
 	ssize_t get_command;
-        size_t n = 0;
-        char **full_command;
-        (void)argc;
+	size_t n = 0;
+	char **full_command;
+	(void)argc;
 
-        prompt = "$ ";
+	prompt = "$ ";
 
-        while (1)
-        {
-                if (isatty(STDIN_FILENO))
-                        _printf("%s", prompt);
-                /*write(STDOUT_FILENO, prompt, 2);*/
-
-                get_command = getline(&user_command, &n, stdin);
-                if (get_command == -1)
-                {
-                        free(user_command);
-                        return (-1);
-                }
-
-                if (*user_command == '\n')
-                {
-                        continue;
-                }
-
-                full_command = tokens(user_command, get_command);
-                if (built(full_command, envp))
-                        continue;
-                execute_command(full_command, argv, envp);
-        }
-
-        free(user_command);
-        return (0);
+	while (1)
+	{
+		if (isatty(STDIN_FILENO))
+			_printf("%s", prompt);
+		/*write(STDOUT_FILENO, prompt, 2);*/
+		get_command = getline(&user_command, &n, stdin);
+		if (get_command == -1)
+		{
+			free(user_command);
+			return (-1);
+		}
+		if (*user_command == '\n')
+		{
+			continue;
+		}
+		full_command = tokens(user_command, get_command);
+		if (built(full_command, envp))
+			continue;
+		execute_command(full_command, argv, envp);
+	}
+	free(user_command);
+	return (0);
 }
