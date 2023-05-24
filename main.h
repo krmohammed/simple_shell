@@ -25,7 +25,8 @@ typedef struct format
 } format_s;
 
 char **tokens(char *commands, ssize_t command_len);
-int execute_command(char **full_command, char **argv, char **envp, size_t line);
+int execute_command(char **full_command, char **argv,
+		char **envp, size_t line);
 int _strlen(char *s);
 char *_strcat(char *dest, char *src);
 int _strncmp(char *s1, char *s2, int n);
