@@ -14,10 +14,10 @@ char **tokenization(char *usr_com)
 	char *tok;
 	int n_tok, i;
 
-	usr_com_copy = malloc(sizeof(char) * (strlen(usr_com) + 1));
+	usr_com_copy = malloc(sizeof(char) * (_strlen(usr_com) + 1));
 	if (usr_com_copy == NULL)
 		return (NULL);
-	strcpy(usr_com_copy, usr_com);
+	_strcpy(usr_com_copy, usr_com);
 
 	tok = strtok(usr_com, " \n");
 	n_tok = 0;
@@ -35,10 +35,10 @@ char **tokenization(char *usr_com)
 	i = 0;
 	while (tok)
 	{
-		chunks[i] = malloc(sizeof(char) * (strlen(tok) + 1));
+		chunks[i] = malloc(sizeof(char) * (_strlen(tok) + 1));
 		if (chunks[i] == NULL)
 			return (NULL);
-		strcpy(chunks[i], tok);
+		_strcpy(chunks[i], tok);
 		i++;
 		tok = strtok(NULL, " \n");
 	}
