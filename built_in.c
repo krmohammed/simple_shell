@@ -14,6 +14,7 @@ int built(char **command, char **envp)
 
 	if (_strcmp(command[0], "exit") == 0)
 	{
+		free_str(command);
 		exit(1);
 	}
 	if (_strcmp(command[0], "env") == 0)
@@ -21,7 +22,7 @@ int built(char **command, char **envp)
 		i = 0;
 		while (envp[i])
 			_printf("%s\n", envp[i++]);
-
+		free_str(command);
 		return (1);
 	}
 

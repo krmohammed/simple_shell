@@ -1,46 +1,49 @@
 #include "main.h"
 
 /**
- * tokens - breaks commands entered into tokens
- * @commands: string containing command entered
- * @command_len: length of command
+ * tokenization - breaks commands entered into tokens
+ * @usr_com: string containing command entered
  *
  * Return: array of pointers to the tokens
  */
 
-char **tokens(char *commands, ssize_t command_len)
+char **tokenization(char *usr_com)
 {
-	char *token, *commands_cpy = NULL;
-	char **full_command;
-	int n_token, i;
-	char *delim = " \n";
+	char **chunks;
+	char *usr_com_copy = NULL;
+	char *tok;
+	int n_tok, i;
 
-	commands_cpy = malloc(sizeof(char) * command_len);
-	if (commands_cpy == NULL)
-	{
+	usr_com_copy = malloc(sizeof(char) * (strlen(usr_com) + 1));
+	if (usr_com_copy == NULL)
 		return (NULL);
-	}
+	strcpy(usr_com_copy, usr_com);
 
-	_strcpy(commands_cpy, commands);
-	token = strtok(commands, delim);
-
-	n_token = 0;
-	while (token != NULL)
+	tok = strtok(usr_com, " \n");
+	n_tok = 0;
+	while (tok)
 	{
-		n_token++;
-		token = strtok(NULL, delim);
+		n_tok++;
+		tok = strtok(NULL, " \n");
 	}
 
-	full_command = malloc(sizeof(char *) * n_token);
-	token = strtok(commands_cpy, delim);
-	for (i = 0; token != NULL; i++)
+	chunks = malloc(sizeof(char *) * (n_tok + 1));
+	if (chunks == NULL)
+		return (NULL);
+
+	tok = strtok(usr_com_copy, " \n");
+	i = 0;
+	while (tok)
 	{
-		full_command[i] = malloc(sizeof(char) * _strlen(token));
-		_strcpy(full_command[i], token);
-		token = strtok(NULL, delim);
+		chunks[i] = malloc(sizeof(char) * (strlen(tok) + 1));
+		if (chunks[i] == NULL)
+			return (NULL);
+		strcpy(chunks[i], tok);
+		i++;
+		tok = strtok(NULL, " \n");
 	}
-	full_command[i] = NULL;
+	chunks[i] = NULL;
 
-	free(commands_cpy);
-	return (full_command);
+	free(usr_com_copy);
+	return (chunks);
 }

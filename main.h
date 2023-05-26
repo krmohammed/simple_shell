@@ -24,8 +24,8 @@ typedef struct format
 	int (*f)(va_list *);
 } format_s;
 
-char **tokens(char *commands, ssize_t command_len);
-int execute_command(char **full_command, char **argv,
+char **tokenization(char *usr_com);
+int execute_command(char **full_command, char *args,
 		char **envp, size_t line);
 int _strlen(char *s);
 char *_strcat(char *dest, char *src);
@@ -40,5 +40,6 @@ int _putchar(char c);
 char *locate_path(char *user_cmd, char **envp);
 char *_getEnv(char *path, char **envp);
 int built(char **command, char **envp);
+void free_str(char **d_ptr);
 
 #endif

@@ -35,11 +35,12 @@ int main(int argc, char **argv, char **envp)
 		{
 			continue;
 		}
-		full_command = tokens(user_command, get_command);
+		full_command = tokenization(user_command);
 		if (built(full_command, envp))
 			continue;
-		execute_command(full_command, argv, envp, line_num);
+		execute_command(full_command, argv[0], envp, line_num);
 	}
+
 	free(user_command);
 	return (0);
 }
