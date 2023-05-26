@@ -41,7 +41,7 @@ int main(int argc, char **argv, char **envp)
 			free(user_command);
 			continue;
 		}
-	       	execute_command(full_command, argv[0], envp, line_num);
+		execute_command(full_command, argv[0], envp, line_num);
 	}
 
 	free(user_command);
