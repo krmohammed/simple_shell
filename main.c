@@ -24,17 +24,9 @@ int main(int argc, char **argv, char **envp)
 
 	while ((get_command = getline(&user_command, &n, stdin)) != -1)
 	{
-		/*if (get_command == -1)
-		{
-			free(user_command);
-			return (-1);
-		}
-
-		if (*user_command == '\n')
-			continue;*/
 
 		if (strlen(user_command) > 1 && all_spaces(user_command) != 0)
-		{	
+		{
 			full_command = tokens(user_command, " \n");
 			if (full_command == NULL)
 				continue;
