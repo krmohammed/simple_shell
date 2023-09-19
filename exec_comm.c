@@ -23,12 +23,7 @@ void execute_command(char **full_command, char **argv, char **envp, int num)
 	else if (builts == 0)
 		return;
 	if (access(full_command[0], X_OK) == 0)
-	{
-		actual_command = malloc(sizeof(char) * strlen(full_command[0]) + 1);
-		if (actual_command == NULL)
-			return;
-		actual_command = full_command[0];
-	}
+		actual_command = strdup(full_command[0]);
 	else
 	{
 		actual_command = locate_path(full_command[0], envp);
