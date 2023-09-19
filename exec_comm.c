@@ -11,8 +11,7 @@
 
 void execute_command(char **full_command, char **argv, char **envp, int num)
 {
-	pid_t child;
-	int status, builts;
+	int child, status, builts;
 	char *actual_command;
 
 	builts = built(full_command);
@@ -23,9 +22,13 @@ void execute_command(char **full_command, char **argv, char **envp, int num)
 	}
 	else if (builts == 0)
 		return;
-
 	if (access(full_command[0], X_OK) == 0)
+	{
+		actual_command = malloc(sizeof(char) * strlen(full_command[0]) + 1);
+		if (actual_command == NULL)
+			return;
 		actual_command = full_command[0];
+	}
 	else
 	{
 		actual_command = locate_path(full_command[0], envp);
@@ -35,7 +38,8 @@ void execute_command(char **full_command, char **argv, char **envp, int num)
 			return;
 		}
 	}
-
+	if (access(actual_command, X_OK) != 0)
+		return;
 	child = fork();
 	if (child == -1)
 		print_error(argv[0], num, "fork", "Can't creat another process");
@@ -46,8 +50,6 @@ void execute_command(char **full_command, char **argv, char **envp, int num)
 	}
 	else
 		wait(&status);
-
-	/*freeing(full_command);*/
 	free(actual_command);
 }
 
